@@ -12,13 +12,13 @@ public class Main {
         na ekran ispisuje poruku u obliku "Glavni grad države Država je Grad" ili "Nepostojeća
         država"*/
 
-    public String ispisiGradove(){
+    public static String ispisiGradove(){
         String s = "";
 
         return s;
     }
 
-    public void glavniGrad(){
+    public static void glavniGrad(){
 
         System.out.println("Glavni grad države Država je Grad");
         System.out.println("Nepostojeća država");

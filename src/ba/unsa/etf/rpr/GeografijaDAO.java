@@ -20,10 +20,10 @@ public class GeografijaDAO {
     private Connection conn;
     private PreparedStatement stmt;
 
-    private GeografijaDAO() {
-        try {/*
+  /*  private GeografijaDAO() {
+        try {
             conn = DriverManager.getConnection("jdbc:sqlite:resources/baza.db");
-            stmt = conn.prepareStatement("SELECT autor, naslov, isbn, brojstranica FROM knjige");
+            stmt = conn.prepareStatement("SELECT autor, naslov, isbn, brojstranica FROM gradovi");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 // System.out.println()
@@ -32,13 +32,13 @@ public class GeografijaDAO {
                 Drzava d = new Drzava(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
                 drzave.add(d);
                 // if (trenutnaKnjiga == null) trenutnaKnjiga = new SimpleObjectProperty<Knjiga>(k);
-            }*/
+            }
         } catch (SQLException e) {
             System.out.println("Neuspješno čitanje iz baze: " + e.getMessage());
         }
 
         //if (trenutnaKnjiga == null) trenutnaKnjiga = new SimpleObjectProperty<>();
-    }
+    }*/
 
     private static void initialize() {
         instance = new GeografijaDAO();
@@ -105,10 +105,11 @@ public class GeografijaDAO {
     }
 
     public Drzava nadjiDrzavu(String drzava) {
+        Drzava d = new Drzava();
         int i = 0;
         for (i = 0; i < drzave.size(); i++)
             if (drzave.get(i).equals(drzava))
                 return drzave.get(i);
-       // return null;
+        return d;
     }
 }
