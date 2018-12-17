@@ -5,18 +5,23 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Grad {
 
-    private SimpleIntegerProperty id = new SimpleIntegerProperty(0);
-    private SimpleStringProperty naziv = new SimpleStringProperty("");
-    private SimpleIntegerProperty broj_stanovnika = new SimpleIntegerProperty(0);
-    //private SimpleProperty drzava = new SimpleIntegerProperty(0);
+    private SimpleIntegerProperty id;
+    private SimpleStringProperty naziv;
+    private SimpleIntegerProperty brojStanovnika;
+    private Drzava drzava;
 
-    public Grad() {}
+    public Grad() {
+        id = new SimpleIntegerProperty(0);
+        naziv = new SimpleStringProperty("");
+        brojStanovnika = new SimpleIntegerProperty(0);
+        drzava = null;
+    }
 
-    public Grad (Integer a, String n, Integer i, int b) {
+    public Grad (Integer a, String n, Integer i, Drzava b) {
         id = new SimpleIntegerProperty(a);
         naziv = new SimpleStringProperty(n);
-        broj_stanovnika = new SimpleIntegerProperty(i);
-        //  drzava = new SimpleIntegerProperty(b);
+        brojStanovnika = new SimpleIntegerProperty(i);
+        drzava = b;
     }
 
 
@@ -44,15 +49,23 @@ public class Grad {
         this.naziv.set(naziv);
     }
 
-    public int getBroj_stanovnika() {
-        return broj_stanovnika.get();
+    public int getBrojStanovnika() {
+        return brojStanovnika.get();
     }
 
-    public SimpleIntegerProperty broj_stanovnikaProperty() {
-        return broj_stanovnika;
+    public SimpleIntegerProperty brojStanovnikaProperty() {
+        return brojStanovnika;
     }
 
-    public void setBroj_stanovnika(int broj_stanovnika) {
-        this.broj_stanovnika.set(broj_stanovnika);
+    public void setBrojStanovnika(int brojStanovnika) {
+        this.brojStanovnika.set(brojStanovnika);
+    }
+
+    public Drzava getDrzava() {
+        return drzava;
+    }
+
+    public void setDrzava(Drzava drzava) {
+        this.drzava = drzava;
     }
 }

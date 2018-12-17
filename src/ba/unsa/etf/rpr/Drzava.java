@@ -5,16 +5,20 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class Drzava {
 
-    private SimpleIntegerProperty id = new SimpleIntegerProperty(0);
-    private SimpleStringProperty naziv = new SimpleStringProperty("");
-   // private Grad glavni_grad = new Grad();
+    private SimpleIntegerProperty id;
+    private SimpleStringProperty naziv;
+    private Grad glavniGrad;
 
-    public Drzava() {}
+    public Drzava() {
+        id = new SimpleIntegerProperty(0);
+        naziv = new SimpleStringProperty("");
+        glavniGrad = new Grad();
+    }
 
     public Drzava (Integer a, String n, Grad g) {
         id = new SimpleIntegerProperty(a);
         naziv = new SimpleStringProperty(n);
-     //   g = new Grad(g);
+        glavniGrad = g;
     }
 
 
@@ -40,5 +44,13 @@ public class Drzava {
 
     public void setNaziv(String naziv) {
         this.naziv.set(naziv);
+    }
+
+    public void setGlavniGrad(Grad g) {
+        glavniGrad = g;
+    }
+
+    public Grad getGlavniGrad() {
+        return glavniGrad;
     }
 }
