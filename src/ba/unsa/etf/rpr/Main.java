@@ -23,13 +23,22 @@ public class Main {
     }
 
     public static void glavniGrad(){
+        System.out.println("Unesite ime drzave: ");
+        Scanner scanner = new Scanner(System.in);
+        String drzava = scanner.nextLine();
+        Grad grad = GeografijaDAO.getInstance().glavniGrad(drzava);
+        if (grad != null) {
+            System.out.println("Glavni grad drzave " + drzava + " je " + grad.getNaziv());
+        }
+        else {
+            System.out.println("Nepostojeca drzava");
+        }
 
-        System.out.println("Glavni grad države Država je Grad");
-        System.out.println("Nepostojeća država");
     }
 
     public static void main(String[] args) {
         System.out.println(ispisiGradove());
+        glavniGrad();
     }
 
 }
