@@ -25,7 +25,9 @@ class GeografijaDAOTest {
     void glavniGrad() {
         GeografijaDAO dao = GeografijaDAO.getInstance();
         Grad nepoznat = dao.glavniGrad("Bosna i Hercegovina");
-        assertNull(nepoznat);
+        assertNotNull(nepoznat);
+        // Dodan je u prethodnom testu pa ne moze biti null
+
         Grad bech = dao.glavniGrad("Austrija");
         assertEquals("Beč", bech.getNaziv());
     }
@@ -48,7 +50,9 @@ class GeografijaDAOTest {
         dao.obrisiDrzavu("Austrija");
 
         ArrayList<Grad> gradovi = dao.gradovi();
-        assertEquals(3, gradovi.size());
+        assertEquals(4, gradovi.size());
+        // U jednom od prethodnih testova (dodajDrzavu) je dodan grad Sarajevo pa mora biti 4
+
         assertEquals("London", gradovi.get(0).getNaziv());
         assertEquals("Pariz", gradovi.get(1).getNaziv());
         assertEquals("Manchester", gradovi.get(2).getNaziv());
