@@ -27,7 +27,7 @@ public class GeografijaDAO {
                     + "	naziv text NOT NULL UNIQUE,\n"
                     + " brojStanovnika integer,\n"
                     + " drzava integer,\n"
-                    + "	FOREIGN KEY(drzava) REFERENCES drzave(id)\n"
+                    + "	FOREIGN KEY(drzava) REFERENCES drzave(id) ON DELETE CASCADE\n"
                     + ");";
 
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -37,7 +37,7 @@ public class GeografijaDAO {
                     + "	id integer PRIMARY KEY,\n"
                     + "	naziv text NOT NULL UNIQUE,\n"
                     + " glavniGrad integer,\n"
-                    + "	FOREIGN KEY(glavniGrad) REFERENCES gradovi(id)\n"
+                    + "	FOREIGN KEY(glavniGrad) REFERENCES gradovi(id) ON DELETE CASCADE\n"
                     + ");";
 
             stmt = conn.prepareStatement(sql);
@@ -59,7 +59,7 @@ public class GeografijaDAO {
             dodajDrzavu(vb);
             dodajGrad(london);
 
-            /*Grad manchester = new Grad();
+            Grad manchester = new Grad();
             manchester.setNaziv("Manchester"); manchester.setBrojStanovnika(510746);
             manchester.setDrzava(vb);
             dodajGrad(manchester);
@@ -70,7 +70,12 @@ public class GeografijaDAO {
             austrija.setNaziv("Austrija");
             austrija.setGlavniGrad(bec);
             dodajDrzavu(austrija);
-            dodajGrad(bec);*/
+            dodajGrad(bec);
+
+            Grad graz = new Grad();
+            graz.setNaziv("Graz"); graz.setBrojStanovnika(283869);
+            graz.setDrzava(austrija);
+            dodajGrad(graz);
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -128,7 +133,7 @@ public class GeografijaDAO {
         try {
             PreparedStatement stmt = conn.prepareStatement("SELECT gradovi.id, gradovi.naziv, brojStanovnika, drzava, " +
                     "drzave.id as d_id, drzave.naziv as d_naziv, drzave.glavniGrad as d_gg FROM gradovi INNER JOIN drzave ON " +
-                    "gradovi.drzava = drzave.id");
+                    "gradovi.drzava = drzave.id ORDER BY brojStanovnika DESC");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 Drzava d = new Drzava();
@@ -188,9 +193,10 @@ public class GeografijaDAO {
 
     public void izmijeniDrzavu(Drzava drzava) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE drzave SET naziv=?, glavniGrad=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE drzave SET naziv=?, glavniGrad=? WHERE id=?");
             stmt.setString(1, drzava.getNaziv());
             stmt.setInt(2, drzava.getGlavniGrad().getId());
+            stmt.setInt(3, drzava.getId());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -199,10 +205,11 @@ public class GeografijaDAO {
 
     public void izmijeniGrad(Grad grad) {
         try {
-            PreparedStatement stmt = conn.prepareStatement("UPDATE gradovi SET naziv=?, brojStanovnika=?, drzava=?");
+            PreparedStatement stmt = conn.prepareStatement("UPDATE gradovi SET naziv=?, brojStanovnika=?, drzava=? WHERE id=?");
             stmt.setString(1, grad.getNaziv());
             stmt.setInt(2, grad.getBrojStanovnika());
             stmt.setInt(3, grad.getDrzava().getId());
+            stmt.setInt(4, grad.getId());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
