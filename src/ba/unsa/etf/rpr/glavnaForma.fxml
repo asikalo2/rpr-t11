@@ -15,25 +15,25 @@
 
     <MenuBar fx:id="menuBar" onKeyPressed="#handleKeyInput">
         <menus>
-            <Menu text="File">
+            <Menu text="%file">
                 <items>
-                    <MenuItem onAction="#saveAction" text="Save As" />
-                    <MenuItem fx:id="exitMenuItem" onAction="#exitAction" text="Exit" />
+                    <MenuItem onAction="#saveAction" text="%saveas" />
+                    <MenuItem fx:id="exitMenuItem" onAction="#exitAction" text="%exit" />
                 </items>
             </Menu>
             <Menu text="Edit">
                 <items>
-                    <MenuItem onAction="#saveAction" text="Add" />
+                    <MenuItem onAction="#saveAction" text="%add" />
                 </items>
             </Menu>
-            <Menu text="View">
+            <Menu text="%view">
                 <items>
-                    <Menu text="Languages">
+                    <Menu text="%languages">
                         <items>
-                            <MenuItem text="Bosnian" />
-                            <MenuItem text="English" />
-                            <MenuItem text="German" />
-                            <MenuItem text="French" />
+                            <MenuItem text="%bosnian" onAction="#changeToBosnian" />
+                            <MenuItem text="%english" onAction="#changeToEnglish"/>
+                            <MenuItem text="%german" />
+                            <MenuItem text="%french" />
                         </items>
                     </Menu>
                 </items>
@@ -43,10 +43,10 @@
 
     <TableView fx:id="tableView" style="-fx-aligmnent: CENTER;">
         <columns>
-            <TableColumn fx:id="idColumn" prefWidth="50.0" text="ID" />
-            <TableColumn fx:id="nazivColumn" prefWidth="180.0" text="Naziv" />
-            <TableColumn fx:id="brojStanovnikaColumn" prefWidth="200.0" text="Broj Stanovnika" />
-            <TableColumn fx:id="drzavaColumn" prefWidth="200.0" text="Drzava" />
+            <TableColumn fx:id="idColumn" prefWidth="50.0" text="%id" />
+            <TableColumn fx:id="nazivColumn" prefWidth="180.0" text="%naziv" />
+            <TableColumn fx:id="brojStanovnikaColumn" prefWidth="200.0" text="%population" />
+            <TableColumn fx:id="drzavaColumn" prefWidth="200.0" text="%country" />
         </columns>
     </TableView>
 

@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 
 public class GlavnaForma {
@@ -54,5 +55,15 @@ public class GlavnaForma {
         }
         tableView.setItems(listaGradova);
 
+    }
+
+    public void changeToBosnian(ActionEvent actionEvent) {
+        System.out.println("to bs");
+        Locale.setDefault(new Locale("bs", "BA"));
+    }
+
+    public void changeToEnglish(ActionEvent actionEvent) {
+        System.out.println("to en_US");
+        Locale.setDefault(new Locale("en", "US"));
     }
 }

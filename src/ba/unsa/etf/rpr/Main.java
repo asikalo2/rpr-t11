@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Main extends Application {
@@ -43,7 +44,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("glavnaForma.fxml"));
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+        Parent root = FXMLLoader.load(getClass().getResource("glavnaForma.fxml"), bundle);
         stage.setTitle("Drzave");
         stage.setScene(new Scene(root, 640, 480));
         stage.show();
