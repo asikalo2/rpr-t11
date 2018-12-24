@@ -17,6 +17,10 @@ public class Main extends Application {
 
     private static Stage stage;
 
+    public static Stage getStage() {
+        return stage;
+    }
+
     public static String ispisiGradove() {
         ArrayList<Grad> gradovi = GeografijaDAO.getInstance().gradovi();
         String rez = "";

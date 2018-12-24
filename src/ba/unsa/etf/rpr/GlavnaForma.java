@@ -10,8 +10,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.FileChooser;
 import net.sf.jasperreports.engine.JRException;
+import org.apache.commons.io.FilenameUtils;
+import org.jfree.io.FileUtilities;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,7 +38,34 @@ public class GlavnaForma implements Initializable {
     public void handleKeyInput(KeyEvent keyEvent) {
     }
 
-    public void saveAction(ActionEvent actionEvent) {
+    public void saveAction(ActionEvent actionEvent) throws IOException {
+        FileChooser fileChooser = new FileChooser();
+
+        //Set extension filter for text files
+        FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
+        FileChooser.ExtensionFilter extFilter2 = new FileChooser.ExtensionFilter("DOCX files (*.docx)", "*.docx");
+        FileChooser.ExtensionFilter extFilter3 = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
+
+        fileChooser.getExtensionFilters().add(extFilter1);
+        fileChooser.getExtensionFilters().add(extFilter2);
+        fileChooser.getExtensionFilters().add(extFilter3);
+
+        //Show save file dialog
+        File file = fileChooser.showSaveDialog(Main.getStage());
+
+        if (file != null) {
+            GradoviReport gradoviReport = new GradoviReport();
+            try {
+                //gradoviReport.showReport(GeografijaDAO.getConn());
+                gradoviReport.saveAs(FilenameUtils.getExtension(file.getCanonicalPath()).toUpperCase(),
+                        GeografijaDAO.getConn(),
+                        file.getCanonicalPath());
+            }
+            catch (JRException ex) {
+                ex.printStackTrace();
+            }
+
+        }
     }
 
     public void exitAction(ActionEvent actionEvent) {
