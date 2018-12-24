@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
@@ -87,9 +86,10 @@ public class GlavnaForma implements Initializable {
 
 
     public void viewReportAction(ActionEvent actionEvent) {
-        PrintReport printReport = new PrintReport();
+        GradoviReport gradoviReport = new GradoviReport();
         try {
-            printReport.showReport(GeografijaDAO.getConn());
+            gradoviReport.showReport(GeografijaDAO.getConn());
+            //gradoviReport.saveAs("PDF", GeografijaDAO.getConn());
         }
         catch (JRException ex) {
             ex.printStackTrace();
