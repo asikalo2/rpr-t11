@@ -18,6 +18,7 @@
             <Menu text="%file">
                 <items>
                     <MenuItem onAction="#saveAction" text="%saveas" />
+                    <MenuItem onAction="#viewReportAction" text="%report" />
                     <MenuItem fx:id="exitMenuItem" onAction="#exitAction" text="%exit" />
                 </items>
             </Menu>

@@ -16,6 +16,10 @@ public class GeografijaDAO {
 
     private static Connection conn;
 
+    public static Connection getConn() {
+        return conn;
+    }
+
     public GeografijaDAO() {
         conn = null;
 

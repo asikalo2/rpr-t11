@@ -11,6 +11,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import net.sf.jasperreports.engine.JRException;
 
 import java.io.IOException;
 import java.net.URL;
@@ -60,7 +61,6 @@ public class GlavnaForma implements Initializable {
             listaGradova.add(g);
         }
         tableView.setItems(listaGradova);
-
     }
 
     public void changeToBosnian(ActionEvent actionEvent) {
@@ -86,4 +86,13 @@ public class GlavnaForma implements Initializable {
     }
 
 
+    public void viewReportAction(ActionEvent actionEvent) {
+        PrintReport printReport = new PrintReport();
+        try {
+            printReport.showReport(GeografijaDAO.getConn());
+        }
+        catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
