@@ -6,12 +6,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
 public class Main extends Application {
+
+    private static Stage stage;
 
     public static String ispisiGradove() {
         ArrayList<Grad> gradovi = GeografijaDAO.getInstance().gradovi();
@@ -43,9 +47,19 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
+        stage = primaryStage;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Parent root = FXMLLoader.load(getClass().getResource("glavnaForma.fxml"), bundle);
+        stage.setTitle("Drzave");
+        stage.setScene(new Scene(root, 640, 480));
+        stage.show();
+    }
+
+    public static void loadView(Locale locale) throws IOException {
+        System.out.println("test");
+        ResourceBundle bundle = ResourceBundle.getBundle("Translation", locale);
+        Parent root = FXMLLoader.load(Main.class.getResource("glavnaForma.fxml"), bundle);
         stage.setTitle("Drzave");
         stage.setScene(new Scene(root, 640, 480));
         stage.show();
