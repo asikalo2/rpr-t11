@@ -21,6 +21,10 @@ public class Drzava {
         glavniGrad = g;
     }
 
+    @Override
+    public String toString() {
+        return naziv.getValue();
+    }
 
     public int getId() {
         return id.get();

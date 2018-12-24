@@ -54,7 +54,7 @@ public class GlavnaForma implements Initializable {
         idColumn.setCellValueFactory(new PropertyValueFactory("id"));
         nazivColumn.setCellValueFactory(new PropertyValueFactory("naziv"));
         brojStanovnikaColumn.setCellValueFactory(new PropertyValueFactory("brojStanovnika"));
-        drzavaColumn.setCellValueFactory(new PropertyValueFactory("drzava.getNaziv()"));
+        drzavaColumn.setCellValueFactory(new PropertyValueFactory("drzava"));
 
         for (Grad g: gradovi) {
             listaGradova.add(g);
