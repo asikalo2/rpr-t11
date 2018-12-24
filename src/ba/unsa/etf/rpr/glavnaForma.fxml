@@ -19,6 +19,7 @@
                 <items>
                     <MenuItem onAction="#saveAction" text="%saveas" />
                     <MenuItem onAction="#viewReportAction" text="%report" />
+                    <MenuItem onAction="#viewReportCountryAction" text="%reportNew" />
                     <MenuItem fx:id="exitMenuItem" onAction="#exitAction" text="%exit" />
                 </items>
             </Menu>

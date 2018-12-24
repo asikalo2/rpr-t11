@@ -210,6 +210,24 @@ public class GeografijaDAO {
         return null;
     }
 
+    public ArrayList<Drzava> drzave() {
+        ArrayList<Drzava> rezultat = new ArrayList<Drzava>();
+        try {
+            PreparedStatement stmt = conn.prepareStatement("SELECT id, naziv, glavniGrad FROM drzave");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Drzava d = new Drzava();
+                d.setId(rs.getInt(1));
+                d.setNaziv(rs.getString(2));
+                rezultat.add(d);
+            }
+            return rezultat;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     public void dodajGrad(Grad grad) {
         try {
             if (nadjiGrad(grad.getNaziv()) != null)

@@ -4,13 +4,16 @@ import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import net.sf.jasperreports.engine.JRException;
 import org.apache.commons.io.FilenameUtils;
 import org.jfree.io.FileUtilities;
@@ -120,10 +123,26 @@ public class GlavnaForma implements Initializable {
         GradoviReport gradoviReport = new GradoviReport();
         try {
             gradoviReport.showReport(GeografijaDAO.getConn());
-            //gradoviReport.saveAs("PDF", GeografijaDAO.getConn());
         }
         catch (JRException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void viewReportCountryAction(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            ResourceBundle bundle = ResourceBundle.getBundle("Translation");
+            fxmlLoader.setResources(bundle);
+            fxmlLoader.setLocation(getClass().getResource("odabirDrzave.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+            Stage stage = new Stage();
+            stage.setTitle("New Window");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 }
