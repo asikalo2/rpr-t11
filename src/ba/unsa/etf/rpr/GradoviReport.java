@@ -17,16 +17,22 @@ import java.util.HashMap;
 
 public class GradoviReport extends JFrame {
 
+
     public void showReport(Connection conn) throws JRException {
+        //iz predavanja
         String reportSrcFile = getClass().getResource("/reports/gradovi.jrxml").getFile();
+        //ucitava se ovaj jrxml template
         String reportsDir = getClass().getResource("/reports/").getFile();
+        //dobijamo direktorij reports mozemo i bez ovoga
         JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
+        //kad procita jrxml dopusta da se parametrizira, i to pravi preko HashMape, podesava razne vrijednosti
 
         HashMap<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("reportsDirPath", reportsDir);
         ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
         list.add(parameters);
         JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, conn);
+        //ovaj print objekat generira stvari report -> bira nacin na koji cemo predstaviti report, u ovom slucaju je u viewer
         JRViewer viewer = new JRViewer(print);
         viewer.setOpaque(true);
         viewer.setVisible(true);
@@ -36,12 +42,15 @@ public class GradoviReport extends JFrame {
     }
 
     public void showReportDrzava(Connection conn, String drzava) throws JRException {
+        //iz predavanja
         String reportSrcFile = getClass().getResource("/reports/gradoviNovi.jrxml").getFile();
         String reportsDir = getClass().getResource("/reports/").getFile();
         JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
 
         HashMap<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("reportsDirPath", reportsDir);
+        //ovdje je dodan novi parametar, jer trazimo gradove u drzavi, pa sam napravia gradoviNovi.jrxml, koji je isti
+        //kao i gradovi.jrxml, sa jednim dodatnim parametrom i izmijenjenm SQL queryijem
         parameters.put("drzavaParam", drzava);
         ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
         list.add(parameters);
@@ -55,6 +64,7 @@ public class GradoviReport extends JFrame {
     }
 
     public void saveAs(String format, Connection conn, String filePath) throws JRException {
+        //iz predavanja
         String reportSrcFile = getClass().getResource("/reports/gradovi.jrxml").getFile();
         String reportsDir = getClass().getResource("/reports/").getFile();
         JasperReport jasperReport = JasperCompileManager.compileReport(reportSrcFile);
@@ -64,6 +74,7 @@ public class GradoviReport extends JFrame {
         ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();
         list.add(parameters);
         JasperPrint print = JasperFillManager.fillReport(jasperReport, parameters, conn);
+        //nadjeno na netu spasavanje u ove fajlove
         switch (format) {
             case "PDF":
                 JasperExportManager.exportReportToPdfFile(print, filePath);

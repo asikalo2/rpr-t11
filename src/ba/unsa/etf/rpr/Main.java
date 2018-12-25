@@ -52,6 +52,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        //proslijedjujemo ovaj primaryStage stageu, jer ce se forma mijenjati pri promjeni jezika
         stage = primaryStage;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
         Parent root = FXMLLoader.load(getClass().getResource("glavnaForma.fxml"), bundle);
@@ -61,6 +62,9 @@ public class Main extends Application {
     }
 
     public static void loadView(Locale locale) throws IOException {
+        // ova metoda se poziva kada se odabare promjena jezika da bi ponovo izgenerisala
+        // prikaz forme. Ucitava se resourceBundle sa novoodabranom localeom i STAGE objektu se dodjeljuje
+        // ponovno izgenerisana forma
         System.out.println("test");
         ResourceBundle bundle = ResourceBundle.getBundle("Translation", locale);
         Parent root = FXMLLoader.load(Main.class.getResource("glavnaForma.fxml"), bundle);

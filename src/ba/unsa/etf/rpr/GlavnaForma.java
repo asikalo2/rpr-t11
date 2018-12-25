@@ -44,7 +44,8 @@ public class GlavnaForma implements Initializable {
     public void saveAction(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
 
-        //Set extension filter for text files
+        //nadjen primjer na netu sa saveOpcijom, kreira se filter, dodaje u chooser, zatim se otvara i kad pritisnemo OK
+        //dobijemo putanju filea koje spasavamo, ako je != null
         FileChooser.ExtensionFilter extFilter1 = new FileChooser.ExtensionFilter("PDF files (*.pdf)", "*.pdf");
         FileChooser.ExtensionFilter extFilter2 = new FileChooser.ExtensionFilter("DOCX files (*.docx)", "*.docx");
         FileChooser.ExtensionFilter extFilter3 = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
@@ -60,6 +61,7 @@ public class GlavnaForma implements Initializable {
             GradoviReport gradoviReport = new GradoviReport();
             try {
                 //gradoviReport.showReport(GeografijaDAO.getConn());
+                //dobijamo ekstenziju iz fajla, jer SaveAs u GradoviReport trazi ekstenziju, konekciju na bazu i putanju
                 gradoviReport.saveAs(FilenameUtils.getExtension(file.getCanonicalPath()).toUpperCase(),
                         GeografijaDAO.getConn(),
                         file.getCanonicalPath());
@@ -97,6 +99,7 @@ public class GlavnaForma implements Initializable {
     }
 
     public void changeToBosnian(ActionEvent actionEvent) {
+        //postavljamo novi Locale, sa defaultom bosanskog jezika i zatim pomoccu loadView osvjezavamo formu s novim jezikom
         System.out.println("to bs");
         Locale.setDefault(new Locale("bs", "BA"));
         try {
@@ -118,6 +121,28 @@ public class GlavnaForma implements Initializable {
         }
     }
 
+    public void changeToGerman(ActionEvent actionEvent) {
+        System.out.println("to de");
+        Locale.setDefault(new Locale("de", "DE"));
+        try {
+            Main.loadView(Locale.getDefault());
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    public void changeToFrench(ActionEvent actionEvent) {
+        System.out.println("to fr");
+        Locale.setDefault(new Locale("fr", "FR"));
+        try {
+            Main.loadView(Locale.getDefault());
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
     public void viewReportAction(ActionEvent actionEvent) {
         GradoviReport gradoviReport = new GradoviReport();
@@ -130,6 +155,8 @@ public class GlavnaForma implements Initializable {
     }
 
     public void viewReportCountryAction(ActionEvent actionEvent) {
+        //pozivamo novu formu za odabir drzave, i kada je odaberemo iz comboboxa, pritiskom na dugme se prikaze izvjestaj
+        //poziva se iz GeografijaDAO metoda drzave da napuni vrijednosti u comboboxu
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             ResourceBundle bundle = ResourceBundle.getBundle("Translation");

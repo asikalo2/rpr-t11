@@ -23,7 +23,7 @@
                     <MenuItem fx:id="exitMenuItem" onAction="#exitAction" text="%exit" />
                 </items>
             </Menu>
-            <Menu text="Edit">
+            <Menu text="%edit">
                 <items>
                     <MenuItem onAction="#saveAction" text="%add" />
                 </items>
@@ -34,8 +34,8 @@
                         <items>
                             <MenuItem text="%bosnian" onAction="#changeToBosnian" />
                             <MenuItem text="%english" onAction="#changeToEnglish"/>
-                            <MenuItem text="%german" />
-                            <MenuItem text="%french" />
+                            <MenuItem text="%german" onAction="#changeToGerman"/>
+                            <MenuItem text="%french" onAction="#changeToFrench"/>
                         </items>
                     </Menu>
                 </items>
