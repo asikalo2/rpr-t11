@@ -54,7 +54,7 @@ public class Main extends Application {
         //proslijedjujemo ovaj primaryStage stageu, jer ce se forma mijenjati pri promjeni jezika
         stage = primaryStage;
         ResourceBundle bundle = ResourceBundle.getBundle("Translation");
-        Parent root = FXMLLoader.load(getClass().getResource("glavnaForma.fxml"), bundle);
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/glavnaForma.fxml"), bundle);
         stage.setTitle("Drzave");
         stage.setScene(new Scene(root, 640, 480));
         stage.show();
@@ -66,7 +66,7 @@ public class Main extends Application {
         // ponovno izgenerisana forma
         System.out.println("test");
         ResourceBundle bundle = ResourceBundle.getBundle("Translation", locale);
-        Parent root = FXMLLoader.load(Main.class.getResource("glavnaForma.fxml"), bundle);
+        Parent root = FXMLLoader.load(Main.class.getClassLoader().getResource("fxml/glavnaForma.fxml"), bundle);
         stage.setTitle("Drzave");
         stage.setScene(new Scene(root, 640, 480));
         stage.show();

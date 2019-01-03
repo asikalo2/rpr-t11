@@ -17,7 +17,7 @@ public class GeografijaDAO {
         conn = null;
 
         try {
-            String url = "jdbc:sqlite:resources/baza.db";
+            String url = "jdbc:sqlite:baza.db";
             conn = DriverManager.getConnection(url);
             generirajBazu();
 
